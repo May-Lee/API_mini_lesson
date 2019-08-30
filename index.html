@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>APIs AJAX and More</title>
+</head>
+<body>
+  <button id="get-text">Get Text of Today's Star</button>
+  <div id="star-text"></div>
+  <script>
+    document.getElementById('get-text').addEventListener('click', getText);
+    const NASAAPIKey = ''
+    const NASAUrl = 'https://api.nasa.gov/planetary/apod?api_key='
+    let someUrl = NASAUrl + NASAAPIKey
+      function getText(){
+        let starText = document.getElementById('star-text');
+        starText.innerHTML = '';
+        fetch(someUrl)
+        .then((res) => res.json())
+        .then((data) => {
+          let output = data.explanation;
+          starText.insertAdjacentHTML("beforeend", output);
+        })
+      }
+  </script>
+
+</body>
+</html>
